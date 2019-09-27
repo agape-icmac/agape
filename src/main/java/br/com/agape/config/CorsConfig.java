@@ -13,7 +13,8 @@ public class CorsConfig implements WebMvcConfigurer {
 		registry.addMapping("/**")
 				.allowedOrigins(
 						"http://localhost:63342",
-						"https://bitscamp.github.io")
+						"https://agape-backend.herokuapp.com",
+						"https://agape.github.io")
 				.allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
 				.allowedHeaders("*")
 				.allowCredentials(true);
