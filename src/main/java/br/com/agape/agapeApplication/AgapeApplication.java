@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan(basePackages = "br.com.bitscamp.chatbot.model")
+@EntityScan(basePackages = "br.com.agape.model")
 @ComponentScan(basePackages = "br.com.agape.controller")
 @ComponentScan(basePackages = "br.com.agape.config")
 @EnableJpaRepositories(basePackages = "br.com.agape.repository")
