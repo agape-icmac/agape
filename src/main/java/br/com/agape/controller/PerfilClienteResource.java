@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.agape.model.PerfilCliente;
 import br.com.agape.repository.PerfilClienteRepository;
 
 @RestController
