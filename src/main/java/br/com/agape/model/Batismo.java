@@ -9,6 +9,8 @@ import java.util.Objects;
 @Table(name = "tb_batismo")
 public class Batismo implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_batismo")

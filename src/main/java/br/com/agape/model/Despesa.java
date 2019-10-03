@@ -10,6 +10,8 @@ import java.util.Objects;
 @Table(name = "tb_despesa")
 public class Despesa implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_despesas")
@@ -77,4 +79,5 @@ public class Despesa implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
 }

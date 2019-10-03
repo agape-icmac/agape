@@ -8,6 +8,8 @@ import java.util.Objects;
 @Table(name = "tb_cargo_discipulo")
 public class CargoDiscipulo implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_cargo")
@@ -51,4 +53,5 @@ public class CargoDiscipulo implements Serializable {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
 }
