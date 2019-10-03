@@ -8,10 +8,10 @@
 		<version>2.1.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.bitscamp</groupId>
+	<groupId>br.com.agape</groupId>
 	<artifactId>agape</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>chatbot</name>
+	<name>agape</name>
 	<description>Projeto Agape</description>
 
 	<properties>
