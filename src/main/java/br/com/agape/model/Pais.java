@@ -2,6 +2,7 @@ package br.com.agape.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +15,9 @@ public class Pais implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_pais")
     private Long id;
+
+    @OneToMany(mappedBy = "nacionalidade")
+    private List<Nacionalidade> nacionalidades;
 
     @Column(name = "str_nome_pais")
     private String pais;

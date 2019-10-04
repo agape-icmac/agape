@@ -17,6 +17,7 @@ public class Evento implements Serializable {
     private Long id;
 
     @ManyToMany
+    @JoinColumn(name = "cod_ministerio")
     private Ministerio ministerio;
 
     @Column(name = "str_nome_evento")

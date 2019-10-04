@@ -16,6 +16,10 @@ public class MetaMinisterial implements Serializable {
     @Column(name = "cod_meta_ministerial")
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "cod_ministerio")
+    private Ministerio ministerio;
+
     @Column(name = "cod_meta_ministerial")
     private String meta;
 
@@ -24,9 +28,6 @@ public class MetaMinisterial implements Serializable {
 
     @Column(name = "dat_final_meta")
     private Date dataFinal;
-
-    @ManyToOne
-    private Ministerio ministerio;
 
     @Column(name = "flg_meta_alcancada", length = 1)
     private char metaAlcancada;

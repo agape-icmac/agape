@@ -17,14 +17,20 @@ public class Discipulo implements Serializable {
     @Column(name = "cod_discipulo")
     private Long id;
 
-    @Column(name = "cod_nivel_escolaridade")
+    @ManyToOne
+    @JoinColumn(name = "cod_nivel_escolaridade")
     private Escolaridade escolaridade;
 
-    @Column(name = "cod_estado_civil")
+    @ManyToOne
+    @JoinColumn(name = "cod_estado_civil")
     private EstadoCivil estadoCivil;
 
-    @Column(name = "cod_batismo")
+    @ManyToOne
+    @JoinColumn(name = "cod_batismo")
     private Batismo bastismo;
+
+    @ManyToMany
+    private CargoDiscipulo cargo;
 
     @Column(name = "str_nome_completo_discipulo")
     private String nome;
@@ -73,9 +79,6 @@ public class Discipulo implements Serializable {
 
     @Column(name = "tms_atualizacao_disc")
     private Timestamp dataAtualizacao;
-
-    @Column(name = "cod_cargo")
-    private CargoDiscipulo cargo;
 
     public Discipulo() {
     }
