@@ -3,6 +3,7 @@ package br.com.agape.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,8 +18,16 @@ public class Evento implements Serializable {
     private Long id;
 
     @ManyToMany
-    @JoinColumn(name = "cod_ministerio")
-    private Ministerio ministerio;
+    @JoinTable(name = "tb_evento_ministerio",
+            joinColumns = @JoinColumn(name = "cod_evento"),
+            inverseJoinColumns = @JoinColumn(name = ""))
+    private List<Ministerio> ministerio;
+
+    @ManyToMany
+    @JoinTable(name = "tb_discipulo_evento",
+            joinColumns = @JoinColumn(name = "cod_evento"),
+            inverseJoinColumns = @JoinColumn(name = "cod_discipulo"))
+    private List<Discipulo> discipulos;
 
     @Column(name = "str_nome_evento")
     private String nome;
@@ -35,8 +44,9 @@ public class Evento implements Serializable {
     public Evento() {
     }
 
-    public Evento(Ministerio ministerio, String nome, Date dataInicio, Date dataFinal, String anotacao) {
+    public Evento(List<Ministerio> ministerio, List<Discipulo> discipulos, String nome, Date dataInicio, Date dataFinal, String anotacao) {
         this.ministerio = ministerio;
+        this.discipulos = discipulos;
         this.nome = nome;
         this.dataInicio = dataInicio;
         this.dataFinal = dataFinal;
@@ -62,14 +72,6 @@ public class Evento implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Ministerio getMinisterio() {
-        return ministerio;
-    }
-
-    public void setMinisterio(Ministerio ministerio) {
-        this.ministerio = ministerio;
     }
 
     public String getNome() {
@@ -102,6 +104,22 @@ public class Evento implements Serializable {
 
     public void setAnotacao(String anotacao) {
         this.anotacao = anotacao;
+    }
+
+    public List<Discipulo> getDiscipulos() {
+        return discipulos;
+    }
+
+    public void setDiscipulos(List<Discipulo> discipulos) {
+        this.discipulos = discipulos;
+    }
+
+    public List<Ministerio> getMinisterio() {
+        return ministerio;
+    }
+
+    public void setMinisterio(List<Ministerio> ministerio) {
+        this.ministerio = ministerio;
     }
 
 }

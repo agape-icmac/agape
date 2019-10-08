@@ -2,6 +2,7 @@ package br.com.agape.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +16,9 @@ public class Curso implements Serializable {
     @Column(name = "cod_curso")
     private Long id;
 
+    @ManyToMany(mappedBy = "cursos")
+    private List<Discipulo> discipulos;
+
     @Column(name = "str_nome_curso")
     private String nome;
 
@@ -23,7 +27,9 @@ public class Curso implements Serializable {
 
     public Curso() {
     }
-    public Curso(String nome, String descricao) {
+
+    public Curso(List<Discipulo> discipulos, String nome, String descricao) {
+        this.discipulos = discipulos;
         this.nome = nome;
         this.descricao = descricao;
     }
@@ -63,6 +69,14 @@ public class Curso implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public List<Discipulo> getDiscipulos() {
+        return discipulos;
+    }
+
+    public void setDiscipulos(List<Discipulo> discipulos) {
+        this.discipulos = discipulos;
     }
 
 }
