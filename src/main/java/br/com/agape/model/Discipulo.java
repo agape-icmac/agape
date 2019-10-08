@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -30,7 +31,14 @@ public class Discipulo implements Serializable {
     private Batismo bastismo;
 
     @ManyToMany
-    private CargoDiscipulo cargo;
+    @JoinTable(name = "tb_cargo_discipulo",
+            joinColumns = @JoinColumn(name = "cod_discipulo"),
+            inverseJoinColumns = @JoinColumn(name = "cod_cargo"))
+    private List<CargoDiscipulo> cargos;
+
+    @ManyToMany
+    @JoinTable(name = "tb_discipulo_evento", joinColumns = )
+    private List<Evento> eventos;
 
     @Column(name = "str_nome_completo_discipulo")
     private String nome;
@@ -83,10 +91,11 @@ public class Discipulo implements Serializable {
     public Discipulo() {
     }
 
-    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String cursoEclesiastico, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao, CargoDiscipulo cargo) {
+    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, List<CargoDiscipulo> cargos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String cursoEclesiastico, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
         this.escolaridade = escolaridade;
         this.estadoCivil = estadoCivil;
         this.bastismo = bastismo;
+        this.cargos = cargos;
         this.nome = nome;
         this.nomePai = nomePai;
         this.nomeMae = nomeMae;
@@ -103,7 +112,6 @@ public class Discipulo implements Serializable {
         this.situacao = situacao;
         this.usuarioAtualizacao = usuarioAtualizacao;
         this.dataAtualizacao = dataAtualizacao;
-        this.cargo = cargo;
     }
 
     @Override
@@ -279,12 +287,12 @@ public class Discipulo implements Serializable {
         this.dataAtualizacao = dataAtualizacao;
     }
 
-    public CargoDiscipulo getCargo() {
-        return cargo;
+    public List<CargoDiscipulo> getCargos() {
+        return cargos;
     }
 
-    public void setCargo(CargoDiscipulo cargo) {
-        this.cargo = cargo;
+    public void setCargos(List<CargoDiscipulo> cargos) {
+        this.cargos = cargos;
     }
 
 }

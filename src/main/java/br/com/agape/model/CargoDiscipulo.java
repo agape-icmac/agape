@@ -2,6 +2,7 @@ package br.com.agape.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,11 +19,15 @@ public class CargoDiscipulo implements Serializable {
     @Column(name = "str_descricao_cargo")
     private String cargo;
 
+    @ManyToMany(mappedBy = "cargos")
+    private List<Discipulo> discipulos;
+
     public CargoDiscipulo() {
     }
 
-    public CargoDiscipulo(String cargo) {
+    public CargoDiscipulo(String cargo, List<Discipulo> discipulos) {
         this.cargo = cargo;
+        this.discipulos = discipulos;
     }
 
     @Override
@@ -52,6 +57,14 @@ public class CargoDiscipulo implements Serializable {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public List<Discipulo> getDiscipulos() {
+        return discipulos;
+    }
+
+    public void setDiscipulos(List<Discipulo> discipulos) {
+        this.discipulos = discipulos;
     }
 
 }
