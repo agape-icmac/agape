@@ -2,6 +2,7 @@ package br.com.agape.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +15,9 @@ public class Ministerio implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_ministerio")
     private Long id;
+
+    @ManyToMany(mappedBy = "ministerios")
+    private List<Evento> eventos;
 
     @Column(name = "str_descricao_mins", length = 200)
     private String descMinisterio;

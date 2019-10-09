@@ -17,6 +17,10 @@ public class Despesa implements Serializable {
     @Column(name = "cod_despesas")
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "cod_ministerio")
+    private Ministerio ministerio;
+
     @Column(name = "num_valor_despesa")
     private BigDecimal valorDespesa;
 
@@ -29,7 +33,8 @@ public class Despesa implements Serializable {
     public Despesa() {
     }
 
-    public Despesa(BigDecimal valorDespesa, Date dataDespesa, String descricao) {
+    public Despesa(Ministerio ministerio, BigDecimal valorDespesa, Date dataDespesa, String descricao) {
+        this.ministerio = ministerio;
         this.valorDespesa = valorDespesa;
         this.dataDespesa = dataDespesa;
         this.descricao = descricao;
@@ -78,6 +83,14 @@ public class Despesa implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Ministerio getMinisterio() {
+        return ministerio;
+    }
+
+    public void setMinisterio(Ministerio ministerio) {
+        this.ministerio = ministerio;
     }
 
 }

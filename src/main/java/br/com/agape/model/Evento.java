@@ -19,14 +19,14 @@ public class Evento implements Serializable {
 
     @ManyToMany
     @JoinTable(name = "tb_evento_ministerio",
-            joinColumns = @JoinColumn(name = "cod_evento"),
-            inverseJoinColumns = @JoinColumn(name = ""))
-    private List<Ministerio> ministerio;
+            joinColumns = @JoinColumn(name = "cod_ministerio"),
+            inverseJoinColumns = @JoinColumn(name = "cod_evento"))
+    private List<Ministerio> ministerios;
 
     @ManyToMany
     @JoinTable(name = "tb_discipulo_evento",
-            joinColumns = @JoinColumn(name = "cod_evento"),
-            inverseJoinColumns = @JoinColumn(name = "cod_discipulo"))
+            joinColumns = @JoinColumn(name = "cod_discipulo"),
+            inverseJoinColumns = @JoinColumn(name = "cod_evento"))
     private List<Discipulo> discipulos;
 
     @Column(name = "str_nome_evento")
@@ -44,8 +44,8 @@ public class Evento implements Serializable {
     public Evento() {
     }
 
-    public Evento(List<Ministerio> ministerio, List<Discipulo> discipulos, String nome, Date dataInicio, Date dataFinal, String anotacao) {
-        this.ministerio = ministerio;
+    public Evento(List<Ministerio> ministerios, List<Discipulo> discipulos, String nome, Date dataInicio, Date dataFinal, String anotacao) {
+        this.ministerios = ministerios;
         this.discipulos = discipulos;
         this.nome = nome;
         this.dataInicio = dataInicio;
@@ -115,11 +115,11 @@ public class Evento implements Serializable {
     }
 
     public List<Ministerio> getMinisterio() {
-        return ministerio;
+        return ministerios;
     }
 
-    public void setMinisterio(List<Ministerio> ministerio) {
-        this.ministerio = ministerio;
+    public void setMinisterio(List<Ministerio> ministerios) {
+        this.ministerios = ministerios;
     }
 
 }

@@ -18,6 +18,7 @@ public class Receita implements Serializable {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "cod_discipulo")
     private Discipulo discipulo;
 
     @Column(name = "num_valor_depositado_dizof")
