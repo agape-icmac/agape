@@ -15,7 +15,7 @@ public class Nacionalidade implements Serializable {
     @Column(name = "cod_nacionalidade")
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "cod_pais")
     private Pais pais;
 

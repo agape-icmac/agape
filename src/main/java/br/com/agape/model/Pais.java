@@ -16,9 +16,6 @@ public class Pais implements Serializable {
     @Column(name = "cod_pais")
     private Long id;
 
-    @OneToMany(mappedBy = "nacionalidade")
-    private List<Nacionalidade> nacionalidades;
-
     @Column(name = "str_nome_pais")
     private String pais;
 
@@ -56,14 +53,6 @@ public class Pais implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
     }
 
     public String getSigla() {

@@ -17,10 +17,7 @@ public class Evento implements Serializable {
     @Column(name = "cod_evento")
     private Long id;
 
-    @ManyToMany
-    @JoinTable(name = "tb_evento_ministerio",
-            joinColumns = @JoinColumn(name = "cod_ministerio"),
-            inverseJoinColumns = @JoinColumn(name = "cod_evento"))
+    @ManyToMany(mappedBy = "eventos")
     private List<Ministerio> ministerios;
 
     @ManyToMany
@@ -74,6 +71,22 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
+    public List<Ministerio> getMinisterios() {
+        return ministerios;
+    }
+
+    public void setMinisterios(List<Ministerio> ministerios) {
+        this.ministerios = ministerios;
+    }
+
+    public List<Discipulo> getDiscipulos() {
+        return discipulos;
+    }
+
+    public void setDiscipulos(List<Discipulo> discipulos) {
+        this.discipulos = discipulos;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -104,22 +117,6 @@ public class Evento implements Serializable {
 
     public void setAnotacao(String anotacao) {
         this.anotacao = anotacao;
-    }
-
-    public List<Discipulo> getDiscipulos() {
-        return discipulos;
-    }
-
-    public void setDiscipulos(List<Discipulo> discipulos) {
-        this.discipulos = discipulos;
-    }
-
-    public List<Ministerio> getMinisterio() {
-        return ministerios;
-    }
-
-    public void setMinisterio(List<Ministerio> ministerios) {
-        this.ministerios = ministerios;
     }
 
 }

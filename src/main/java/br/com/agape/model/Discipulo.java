@@ -45,6 +45,9 @@ public class Discipulo implements Serializable {
     @ManyToMany(mappedBy = "discipulos")
     private List<Evento> eventos;
 
+    @OneToMany
+    private Nacionalidade nacionalidade;
+
     @Column(name = "str_nome_completo_discipulo")
     private String nome;
 
