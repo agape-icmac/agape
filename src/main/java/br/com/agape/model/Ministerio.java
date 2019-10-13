@@ -34,8 +34,9 @@ public class Ministerio implements Serializable {
     public Ministerio() {
     }
 
-    public Ministerio(List<Evento> eventos, String descMinisterio) {
+    public Ministerio(List<Evento> eventos, List<Discipulo> discipulos, String descMinisterio) {
         this.eventos = eventos;
+        this.discipulos = discipulos;
         this.descMinisterio = descMinisterio;
     }
 
@@ -66,6 +67,14 @@ public class Ministerio implements Serializable {
 
     public void setEventos(List<Evento> eventos) {
         this.eventos = eventos;
+    }
+
+    public List<Discipulo> getDiscipulos() {
+        return discipulos;
+    }
+
+    public void setDiscipulos(List<Discipulo> discipulos) {
+        this.discipulos = discipulos;
     }
 
     public String getDescMinisterio() {

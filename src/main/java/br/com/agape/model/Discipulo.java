@@ -30,6 +30,9 @@ public class Discipulo implements Serializable {
     @JoinColumn(name = "cod_batismo")
     private Batismo bastismo;
 
+    @OneToMany
+    private Nacionalidade nacionalidade;
+
     @ManyToMany
     @JoinTable(name = "tb_cargo_discipulo",
             joinColumns = @JoinColumn(name = "cod_discipulo"),
@@ -44,9 +47,6 @@ public class Discipulo implements Serializable {
 
     @ManyToMany(mappedBy = "discipulos")
     private List<Evento> eventos;
-
-    @OneToMany
-    private Nacionalidade nacionalidade;
 
     @Column(name = "str_nome_completo_discipulo")
     private String nome;
@@ -99,11 +99,14 @@ public class Discipulo implements Serializable {
     public Discipulo() {
     }
 
-    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, List<CargoDiscipulo> cargos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String cursoEclesiastico, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
+    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, Nacionalidade nacionalidade, List<CargoDiscipulo> cargos, List<Curso> cursos, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String cursoEclesiastico, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
         this.escolaridade = escolaridade;
         this.estadoCivil = estadoCivil;
         this.bastismo = bastismo;
+        this.nacionalidade = nacionalidade;
         this.cargos = cargos;
+        this.cursos = cursos;
+        this.eventos = eventos;
         this.nome = nome;
         this.nomePai = nomePai;
         this.nomeMae = nomeMae;
@@ -165,6 +168,38 @@ public class Discipulo implements Serializable {
 
     public void setBastismo(Batismo bastismo) {
         this.bastismo = bastismo;
+    }
+
+    public Nacionalidade getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(Nacionalidade nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+    public List<CargoDiscipulo> getCargos() {
+        return cargos;
+    }
+
+    public void setCargos(List<CargoDiscipulo> cargos) {
+        this.cargos = cargos;
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
+
+    public List<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
     }
 
     public String getNome() {
@@ -293,14 +328,6 @@ public class Discipulo implements Serializable {
 
     public void setDataAtualizacao(Timestamp dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
-    }
-
-    public List<CargoDiscipulo> getCargos() {
-        return cargos;
-    }
-
-    public void setCargos(List<CargoDiscipulo> cargos) {
-        this.cargos = cargos;
     }
 
 }

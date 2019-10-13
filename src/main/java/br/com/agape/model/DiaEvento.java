@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 import java.util.Objects;
-import java.util.Timer;
 
 @Entity
 @Table(name = "tb_dia_evento")
