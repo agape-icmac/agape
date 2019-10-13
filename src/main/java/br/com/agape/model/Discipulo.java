@@ -30,7 +30,8 @@ public class Discipulo implements Serializable {
     @JoinColumn(name = "cod_batismo")
     private Batismo bastismo;
 
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "cod_nacionalidade")
     private Nacionalidade nacionalidade;
 
     @ManyToMany
