@@ -20,7 +20,7 @@ public class MetaMinisterial implements Serializable {
     @JoinColumn(name = "cod_ministerio")
     private Ministerio ministerio;
 
-    @Column(name = "cod_meta_ministerial")
+    @Column(name = "str_meta_ministerial")
     private String meta;
 
     @Column(name = "dat_inicio_meta")
