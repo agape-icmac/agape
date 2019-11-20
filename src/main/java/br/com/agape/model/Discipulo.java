@@ -46,6 +46,12 @@ public class Discipulo implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "cod_curso"))
     private List<Curso> cursos;
 
+    @ManyToMany
+    @JoinTable(name = "tb_discipulo_ministerio",
+            joinColumns = @JoinColumn(name = "cod_discipulo"),
+            inverseJoinColumns = @JoinColumn(name = "cod_ministerio"))
+    private List<Ministerio> ministerios;
+
     @ManyToMany(mappedBy = "discipulos")
     private List<Evento> eventos;
 
