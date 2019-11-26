@@ -34,10 +34,7 @@ public class Discipulo implements Serializable {
     @JoinColumn(name = "cod_nacionalidade")
     private Nacionalidade nacionalidade;
 
-    @ManyToMany
-    @JoinTable(name = "tb_cargo_discipulo",
-            joinColumns = @JoinColumn(name = "cod_discipulo"),
-            inverseJoinColumns = @JoinColumn(name = "cod_cargo"))
+    @ManyToMany(mappedBy = "discipulos")
     private List<CargoDiscipulo> cargos;
 
     @ManyToMany

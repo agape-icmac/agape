@@ -19,7 +19,10 @@ public class CargoDiscipulo implements Serializable {
     @Column(name = "str_descricao_cargo")
     private String cargo;
 
-    @ManyToMany(mappedBy = "cargos")
+    @ManyToMany
+    @JoinTable(name = "tb_discipulo",
+            joinColumns = @JoinColumn(name = "cod_cargo"),
+            inverseJoinColumns = @JoinColumn(name = "cod_discipulo"))
     private List<Discipulo> discipulos;
 
     public CargoDiscipulo() {
