@@ -15,7 +15,7 @@ public class CorsConfig implements WebMvcConfigurer {
 						"http://localhost:63342",
 						"http://localhost:63343",
 						"https://agape-backend.herokuapp.com",
-						"https://agape.github.io")
+						"https://agape-icmac.github.io")
 				.allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
 				.allowedHeaders("*")
 				.allowCredentials(true);
