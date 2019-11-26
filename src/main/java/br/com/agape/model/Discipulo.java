@@ -73,9 +73,6 @@ public class Discipulo implements Serializable {
     @Column(name = "str_sexo_disc", length = 1)
     private char sexo;
 
-    @Column(name = "str_curso_eclesiastico_disc")
-    private String cursoEclesiastico;
-
     @Column(name = "str_profissao_disc")
     private String profissao;
 
@@ -103,7 +100,7 @@ public class Discipulo implements Serializable {
     public Discipulo() {
     }
 
-    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, Nacionalidade nacionalidade, List<CargoDiscipulo> cargos, List<Curso> cursos, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String cursoEclesiastico, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
+    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, Nacionalidade nacionalidade, List<CargoDiscipulo> cargos, List<Curso> cursos, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
         this.escolaridade = escolaridade;
         this.estadoCivil = estadoCivil;
         this.bastismo = bastismo;
@@ -118,7 +115,6 @@ public class Discipulo implements Serializable {
         this.ufNascimento = ufNascimento;
         this.naturalidade = naturalidade;
         this.sexo = sexo;
-        this.cursoEclesiastico = cursoEclesiastico;
         this.profissao = profissao;
         this.observacao = observacao;
         this.dataNascimento = dataNascimento;
@@ -260,14 +256,6 @@ public class Discipulo implements Serializable {
 
     public void setSexo(char sexo) {
         this.sexo = sexo;
-    }
-
-    public String getCursoEclesiastico() {
-        return cursoEclesiastico;
-    }
-
-    public void setCursoEclesiastico(String cursoEclesiastico) {
-        this.cursoEclesiastico = cursoEclesiastico;
     }
 
     public String getProfissao() {
