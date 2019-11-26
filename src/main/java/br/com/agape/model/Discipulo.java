@@ -32,7 +32,7 @@ public class Discipulo implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "cod_nacionalidade")
-    private Pais pais;
+    private Nacionalidade nacionalidade;
 
     @ManyToMany(mappedBy = "discipulos")
     private List<CargoDiscipulo> cargos;
@@ -100,11 +100,11 @@ public class Discipulo implements Serializable {
     public Discipulo() {
     }
 
-    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, Pais pais, List<CargoDiscipulo> cargos, List<Curso> cursos, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
+    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, Nacionalidade nacionalidade, List<CargoDiscipulo> cargos, List<Curso> cursos, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
         this.escolaridade = escolaridade;
         this.estadoCivil = estadoCivil;
         this.bastismo = bastismo;
-        this.pais = pais;
+        this.nacionalidade = nacionalidade;
         this.cargos = cargos;
         this.cursos = cursos;
         this.eventos = eventos;
@@ -170,12 +170,12 @@ public class Discipulo implements Serializable {
         this.bastismo = bastismo;
     }
 
-    public Pais getPais() {
-        return pais;
+    public Nacionalidade getNacionalidade() {
+        return nacionalidade;
     }
 
-    public void setPais(Pais pais) {
-        this.pais = pais;
+    public void setNacionalidade(Nacionalidade nacionalidade) {
+        this.nacionalidade = nacionalidade;
     }
 
     public List<CargoDiscipulo> getCargos() {
