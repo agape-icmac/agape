@@ -121,4 +121,27 @@ INSERT INTO tb_cargo_discipulo(
 		    ('BRASILEIRO NATURALIZADO',3),
 		    ('OUTROS', 24);
 
+INSERT INTO tb_batismo(
+            cod_batismo, dat_batismo, str_local_batismo, str_nome_igreja_batismo)
+
+    VALUES 	(1,'2018-01-01','Santa Maria' ,'Igreja de Cristo Rocha Eterna'),
+		        (2,'2019-02-02','Santa Maria' ,'igreja de Cristo Missão por amor a Cristo'),
+		        (3,'2019-03-03','Gama' ,'Igreja de Cristo Novo Tempo'),
+		        (4,'2019-04-04','Guara','Casa da Benção' );
+
+INSERT INTO tb_curso(
+            cod_curso, str_nome_curso, str_dsc_curso)
+
+    VALUES      (1,'Escola de aguias' ,'Curso para otimizar o desempenho dos lideres'),
+                        (2,'Escola de Lideres' ,'Formação de lideres igreja ICMAC'),
+                        (3,'Escola da transformação' ,'Escola para transformação pessoal e ministerial');
+
+INSERT INTO tb_despesa(
+            cod_despesa, num_valor_despesa, dat_despesa, str_descricao_despesa,
+            cod_ministerio)
+    VALUES  (1,2000,'2019-03-04','Aluguel',8),
+			(2,2000,'2019-04-04','Aluguel',8),
+			(3,20,'2019-04-04','lanche para ministerio jovens',3),
+			(4,30,'2019-04-10','Aluguel',1);
+
 -- ROLLBACK transaction;

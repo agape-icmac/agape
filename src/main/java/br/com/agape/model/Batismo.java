@@ -19,10 +19,10 @@ public class Batismo implements Serializable {
     @Column(name = "dat_batismo")
     private Date dtBatismo;
 
-    @Column(name = "str_local_bat")
+    @Column(name = "str_local_batismo")
     private String localBastismo;
 
-    @Column(name = "nome_igreja_bat")
+    @Column(name = "str_nome_igreja_batismo")
     private String nomeIgreja;
 
     public Batismo() {

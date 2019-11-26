@@ -14,7 +14,7 @@ public class Despesa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_despesas")
+    @Column(name = "cod_despesa")
     private Long id;
 
     @ManyToOne
