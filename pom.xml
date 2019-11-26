@@ -11,7 +11,7 @@
 	<groupId>br.com.agape</groupId>
 	<artifactId>agape</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>agapes</name>
+	<name>agape</name>
 	<description>Projeto Agape</description>
 
 	<properties>
