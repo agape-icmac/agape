@@ -5,7 +5,7 @@ public class UrlEnum {
     public enum GestaoFrontEnd {
 
         NOME("Bitscamp"),
-        URL_DEV("http://localhost:63343/agape-icmac.github.io"),
+        URL_DEV("http://localhost:6332/agape-icmac.github.io"),
         URL_PROD("https://agape-icmac.github.io");
 
         private String descricao;
