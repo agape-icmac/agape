@@ -100,13 +100,14 @@ public class Discipulo implements Serializable {
     public Discipulo() {
     }
 
-    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, Nacionalidade nacionalidade, List<CargoDiscipulo> cargos, List<Curso> cursos, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
+    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, Nacionalidade nacionalidade, List<CargoDiscipulo> cargos, List<Curso> cursos, List<Ministerio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
         this.escolaridade = escolaridade;
         this.estadoCivil = estadoCivil;
         this.bastismo = bastismo;
         this.nacionalidade = nacionalidade;
         this.cargos = cargos;
         this.cursos = cursos;
+        this.ministerios = ministerios;
         this.eventos = eventos;
         this.nome = nome;
         this.nomePai = nomePai;
@@ -320,6 +321,14 @@ public class Discipulo implements Serializable {
 
     public void setDataAtualizacao(Timestamp dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public List<Ministerio> getMinisterios() {
+        return ministerios;
+    }
+
+    public void setMinisterios(List<Ministerio> ministerios) {
+        this.ministerios = ministerios;
     }
 
 }
