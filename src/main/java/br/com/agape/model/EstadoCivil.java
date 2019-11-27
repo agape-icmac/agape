@@ -16,13 +16,13 @@ public class EstadoCivil implements Serializable {
     private Long id;
 
     @Column(name = "str_descricao_estciv")
-    private String estadoCivilDesc;
+    private String estadoCivil;
 
     public EstadoCivil() {
     }
 
-    public EstadoCivil(String estadoCivilDesc) {
-        this.estadoCivilDesc = estadoCivilDesc;
+    public EstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
     }
 
     @Override
@@ -46,12 +46,12 @@ public class EstadoCivil implements Serializable {
         this.id = id;
     }
 
-    public String getEstadoCivilDesc() {
-        return estadoCivilDesc;
+    public String getEstadoCivil() {
+        return estadoCivil;
     }
 
-    public void setEstadoCivilDesc(String estadoCivilDesc) {
-        this.estadoCivilDesc = estadoCivilDesc;
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
     }
 
 }
