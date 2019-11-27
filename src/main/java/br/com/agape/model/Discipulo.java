@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_discipulo")
@@ -34,13 +35,18 @@ public class Discipulo implements Serializable {
     @JoinColumn(name = "cod_nacionalidade")
     private Nacionalidade nacionalidade;
 
-    @ManyToMany(mappedBy = "discipulos")
-    private List<CargoDiscipulo> cargos;
+    @ManyToMany
+    @JoinTable(name = "tb_cargo_discipulo",
+            joinColumns = @JoinColumn(name = "cod_discipulo"),
+            inverseJoinColumns = @JoinColumn(name = "cod_cargo"))
+    @OrderColumn
+    List<Cargo> cargos;
 
     @ManyToMany
     @JoinTable(name = "tb_curso_discipulo",
             joinColumns = @JoinColumn(name = "cod_discipulo"),
             inverseJoinColumns = @JoinColumn(name = "cod_curso"))
+    @OrderColumn(name = "cod_curso_discipulo")
     private List<Curso> cursos;
 
     @ManyToMany
@@ -100,7 +106,7 @@ public class Discipulo implements Serializable {
     public Discipulo() {
     }
 
-    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo batismo, Nacionalidade nacionalidade, List<CargoDiscipulo> cargos, List<Curso> cursos, List<Ministerio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
+    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo batismo, Nacionalidade nacionalidade, List<Cargo> cargos, List<Curso> cursos, List<Ministerio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
         this.escolaridade = escolaridade;
         this.estadoCivil = estadoCivil;
         this.batismo = batismo;
@@ -179,11 +185,11 @@ public class Discipulo implements Serializable {
         this.nacionalidade = nacionalidade;
     }
 
-    public List<CargoDiscipulo> getCargos() {
+    public List<Cargo> getCargos() {
         return cargos;
     }
 
-    public void setCargos(List<CargoDiscipulo> cargos) {
+    public void setCargos(List<Cargo> cargos) {
         this.cargos = cargos;
     }
 

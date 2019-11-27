@@ -1,73 +1,55 @@
 package br.com.agape.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "tb_cargo_discipulo")
-public class CargoDiscipulo implements Serializable {
+public class CargoDiscipulo {
 
-    private static final long serialVersionUID = 1L;
+    @EmbeddedId
+    @Column(name = "cod_cargo_discipulo")
+    CargoDiscipuloKey id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_cargo")
-    private Long id;
+    @ManyToOne
+    @MapsId("cod_cargo")
+    @JoinColumn(name = "cod_cargo")
+    Cargo cargo;
 
-    @Column(name = "str_descricao_cargo")
-    private String cargo;
-
-    @ManyToMany
-    @JoinTable(name = "tb_discipulo",
-            joinColumns = @JoinColumn(name = "cod_cargo"),
-            inverseJoinColumns = @JoinColumn(name = "cod_discipulo"))
-    private List<Discipulo> discipulos;
+    @ManyToOne
+    @MapsId("cod_discipulo")
+    @JoinColumn(name = "cod_discipulo")
+    Discipulo discipulo;
 
     public CargoDiscipulo() {
     }
 
-    public CargoDiscipulo(String cargo, List<Discipulo> discipulos) {
+    public CargoDiscipulo(CargoDiscipuloKey id, Cargo cargo, Discipulo discipulo) {
+        this.id = id;
         this.cargo = cargo;
-        this.discipulos = discipulos;
+        this.discipulo = discipulo;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CargoDiscipulo that = (CargoDiscipulo) o;
-        return id.equals(that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    public Long getId() {
+    public CargoDiscipuloKey getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(CargoDiscipuloKey id) {
         this.id = id;
     }
 
-    public String getCargo() {
+    public Cargo getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(Cargo cargo) {
         this.cargo = cargo;
     }
 
-    public List<Discipulo> getDiscipulos() {
-        return discipulos;
+    public Discipulo getDiscipulo() {
+        return discipulo;
     }
 
-    public void setDiscipulos(List<Discipulo> discipulos) {
-        this.discipulos = discipulos;
+    public void setDiscipulo(Discipulo discipulo) {
+        this.discipulo = discipulo;
     }
-
 }
