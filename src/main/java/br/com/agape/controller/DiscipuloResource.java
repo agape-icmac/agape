@@ -29,8 +29,8 @@ public class DiscipuloResource {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Discipulo> buscar(@PathVariable Long id) {
-        Discipulo discipulo = discipuloRepository.findById(id).orElse(null);
+    public ResponseEntity<Discipulo> buscar(@PathVariable String cpf) {
+        Discipulo discipulo = discipuloRepository.findByCpf(cpf);
 
         if (discipulo == null) {
             return ResponseEntity.notFound().build();
@@ -57,8 +57,8 @@ public class DiscipuloResource {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> remover(@PathVariable Long id) {
-        Discipulo discipulo = discipuloRepository.findById(id).orElse(null);
+    public ResponseEntity<Void> remover(@PathVariable String cpf) {
+        Discipulo discipulo = discipuloRepository.findByCpf(cpf);
 
         if (discipulo == null) {
             return ResponseEntity.notFound().build();

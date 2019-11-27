@@ -28,7 +28,7 @@ public class Discipulo implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "cod_batismo")
-    private Batismo bastismo;
+    private Batismo batismo;
 
     @ManyToOne
     @JoinColumn(name = "cod_nacionalidade")
@@ -100,10 +100,10 @@ public class Discipulo implements Serializable {
     public Discipulo() {
     }
 
-    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, Nacionalidade nacionalidade, List<CargoDiscipulo> cargos, List<Curso> cursos, List<Ministerio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
+    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo batismo, Nacionalidade nacionalidade, List<CargoDiscipulo> cargos, List<Curso> cursos, List<Ministerio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
         this.escolaridade = escolaridade;
         this.estadoCivil = estadoCivil;
-        this.bastismo = bastismo;
+        this.batismo = batismo;
         this.nacionalidade = nacionalidade;
         this.cargos = cargos;
         this.cursos = cursos;
@@ -163,12 +163,12 @@ public class Discipulo implements Serializable {
         this.estadoCivil = estadoCivil;
     }
 
-    public Batismo getBastismo() {
-        return bastismo;
+    public Batismo getBatismo() {
+        return batismo;
     }
 
-    public void setBastismo(Batismo bastismo) {
-        this.bastismo = bastismo;
+    public void setBatismo(Batismo batismo) {
+        this.batismo = batismo;
     }
 
     public Nacionalidade getNacionalidade() {
