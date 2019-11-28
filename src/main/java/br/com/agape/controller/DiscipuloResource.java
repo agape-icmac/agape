@@ -2,7 +2,6 @@ package br.com.agape.controller;
 
 import br.com.agape.model.Discipulo;
 import br.com.agape.repository.DiscipuloRepository;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("discipulo")
+@RequestMapping(value = "discipulo")
 public class DiscipuloResource {
 
     @Autowired
@@ -28,9 +27,9 @@ public class DiscipuloResource {
         return discipuloRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Discipulo> buscar(@PathVariable Long id) {
-        Discipulo discipulo = discipuloRepository.findById(id).orElse(null);
+    @GetMapping("/{cpf}")
+    public ResponseEntity<Discipulo> buscar(@PathVariable String cpf) {
+        Discipulo discipulo = discipuloRepository.findByCpf(cpf);
 
         if (discipulo == null) {
             return ResponseEntity.notFound().build();
@@ -56,9 +55,9 @@ public class DiscipuloResource {
         return ResponseEntity.ok(existente);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> remover(@PathVariable Long id) {
-        Discipulo discipulo = discipuloRepository.findById(id).orElse(null);
+    @DeleteMapping("/{cpf}")
+    public ResponseEntity<Void> remover(@PathVariable String cpf) {
+        Discipulo discipulo = discipuloRepository.findByCpf(cpf);
 
         if (discipulo == null) {
             return ResponseEntity.notFound().build();

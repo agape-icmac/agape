@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_discipulo")
@@ -28,14 +29,11 @@ public class Discipulo implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "cod_batismo")
-    private Batismo bastismo;
+    private Batismo batismo;
 
     @ManyToOne
     @JoinColumn(name = "cod_nacionalidade")
     private Nacionalidade nacionalidade;
-
-    @ManyToMany(mappedBy = "discipulos")
-    private List<CargoDiscipulo> cargos;
 
     @ManyToMany
     @JoinTable(name = "tb_curso_discipulo",
@@ -44,10 +42,16 @@ public class Discipulo implements Serializable {
     private List<Curso> cursos;
 
     @ManyToMany
+    @JoinTable(name = "tb_cargo_discipulo",
+            joinColumns = @JoinColumn(name = "cod_discipulo"),
+            inverseJoinColumns = @JoinColumn(name = "cod_cargo"))
+    private Set<Cargo> cargos;
+
+    @ManyToMany
     @JoinTable(name = "tb_discipulo_ministerio",
             joinColumns = @JoinColumn(name = "cod_discipulo"),
-            inverseJoinColumns = @JoinColumn(name = "cod_ministerio"))
-    private List<Ministerio> ministerios;
+            inverseJoinColumns = @JoinColumn(name = "cod_curso"))
+    private Set<Ministerio> ministerios;
 
     @ManyToMany(mappedBy = "discipulos")
     private List<Evento> eventos;
@@ -82,11 +86,11 @@ public class Discipulo implements Serializable {
     @Column(name = "dat_nascimento_disc")
     private Date dataNascimento;
 
-    @Column(name = "num_cpf_disc", length = 14)
-    private Long cpf;
+    @Column(name = "num_cpf_disc", length = 14, unique = true)
+    private String cpf;
 
-    @Column(name = "num_rg_disc", length = 25)
-    private Long rg;
+    @Column(name = "num_rg_disc", length = 25, unique = true)
+    private String rg;
 
     @Column(name = "flg_situacao_disc", length = 1)
     private char situacao;
@@ -100,13 +104,13 @@ public class Discipulo implements Serializable {
     public Discipulo() {
     }
 
-    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo bastismo, Nacionalidade nacionalidade, List<CargoDiscipulo> cargos, List<Curso> cursos, List<Ministerio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
+    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo batismo, Nacionalidade nacionalidade, List<Curso> cursos, Set<Cargo> cargos, Set<Ministerio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, String cpf, String rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
         this.escolaridade = escolaridade;
         this.estadoCivil = estadoCivil;
-        this.bastismo = bastismo;
+        this.batismo = batismo;
         this.nacionalidade = nacionalidade;
-        this.cargos = cargos;
         this.cursos = cursos;
+        this.cargos = cargos;
         this.ministerios = ministerios;
         this.eventos = eventos;
         this.nome = nome;
@@ -163,12 +167,12 @@ public class Discipulo implements Serializable {
         this.estadoCivil = estadoCivil;
     }
 
-    public Batismo getBastismo() {
-        return bastismo;
+    public Batismo getBatismo() {
+        return batismo;
     }
 
-    public void setBastismo(Batismo bastismo) {
-        this.bastismo = bastismo;
+    public void setBatismo(Batismo batismo) {
+        this.batismo = batismo;
     }
 
     public Nacionalidade getNacionalidade() {
@@ -177,14 +181,6 @@ public class Discipulo implements Serializable {
 
     public void setNacionalidade(Nacionalidade nacionalidade) {
         this.nacionalidade = nacionalidade;
-    }
-
-    public List<CargoDiscipulo> getCargos() {
-        return cargos;
-    }
-
-    public void setCargos(List<CargoDiscipulo> cargos) {
-        this.cargos = cargos;
     }
 
     public List<Curso> getCursos() {
@@ -283,19 +279,19 @@ public class Discipulo implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public Long getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(Long rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
@@ -323,12 +319,19 @@ public class Discipulo implements Serializable {
         this.dataAtualizacao = dataAtualizacao;
     }
 
-    public List<Ministerio> getMinisterios() {
+    public Set<Cargo> getCargos() {
+        return cargos;
+    }
+
+    public void setCargos(Set<Cargo> cargos) {
+        this.cargos = cargos;
+    }
+
+    public Set<Ministerio> getMinisterios() {
         return ministerios;
     }
 
-    public void setMinisterios(List<Ministerio> ministerios) {
+    public void setMinisterios(Set<Ministerio> ministerios) {
         this.ministerios = ministerios;
     }
-
 }
