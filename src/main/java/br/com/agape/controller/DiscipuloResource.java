@@ -27,7 +27,7 @@ public class DiscipuloResource {
         return discipuloRepository.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{cpf}")
     public ResponseEntity<Discipulo> buscar(@PathVariable String cpf) {
         Discipulo discipulo = discipuloRepository.findByCpf(cpf);
 
@@ -55,7 +55,7 @@ public class DiscipuloResource {
         return ResponseEntity.ok(existente);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{cpf}")
     public ResponseEntity<Void> remover(@PathVariable String cpf) {
         Discipulo discipulo = discipuloRepository.findByCpf(cpf);
 
