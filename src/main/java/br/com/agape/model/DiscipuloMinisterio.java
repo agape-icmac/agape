@@ -11,7 +11,7 @@ public class DiscipuloMinisterio implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_cargo_discipulo")
+    @Column(name = "cod_discipulo_ministerio")
     private Long id;
 
     @ManyToOne
