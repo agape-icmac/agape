@@ -86,10 +86,10 @@ public class Discipulo implements Serializable {
     @Column(name = "dat_nascimento_disc")
     private Date dataNascimento;
 
-    @Column(name = "num_cpf_disc", length = 14)
+    @Column(name = "num_cpf_disc", length = 14, unique = true)
     private String cpf;
 
-    @Column(name = "num_rg_disc", length = 25)
+    @Column(name = "num_rg_disc", length = 25, unique = true)
     private String rg;
 
     @Column(name = "flg_situacao_disc", length = 1)
