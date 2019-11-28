@@ -35,12 +35,9 @@ public class Discipulo implements Serializable {
     @JoinColumn(name = "cod_nacionalidade")
     private Nacionalidade nacionalidade;
 
-    @ManyToMany
-    @JoinTable(name = "tb_cargo_discipulo",
-            joinColumns = @JoinColumn(name = "cod_discipulo"),
-            inverseJoinColumns = @JoinColumn(name = "cod_cargo"))
-    @OrderColumn
-    List<Cargo> cargos;
+
+    @OneToMany(mappedBy = "discipulo")
+    Set<CargoDiscipulo> cargos;
 
     @ManyToMany
     @JoinTable(name = "tb_curso_discipulo",
@@ -48,6 +45,7 @@ public class Discipulo implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "cod_curso"))
     @OrderColumn(name = "cod_curso_discipulo")
     private List<Curso> cursos;
+
 
     @ManyToMany
     @JoinTable(name = "tb_discipulo_ministerio",
@@ -106,7 +104,7 @@ public class Discipulo implements Serializable {
     public Discipulo() {
     }
 
-    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo batismo, Nacionalidade nacionalidade, List<Cargo> cargos, List<Curso> cursos, List<Ministerio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
+    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo batismo, Nacionalidade nacionalidade, Set<CargoDiscipulo> cargos, List<Curso> cursos, List<Ministerio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
         this.escolaridade = escolaridade;
         this.estadoCivil = estadoCivil;
         this.batismo = batismo;
@@ -185,11 +183,11 @@ public class Discipulo implements Serializable {
         this.nacionalidade = nacionalidade;
     }
 
-    public List<Cargo> getCargos() {
+    public Set<CargoDiscipulo> getCargos() {
         return cargos;
     }
 
-    public void setCargos(List<Cargo> cargos) {
+    public void setCargos(Set<CargoDiscipulo> cargos) {
         this.cargos = cargos;
     }
 

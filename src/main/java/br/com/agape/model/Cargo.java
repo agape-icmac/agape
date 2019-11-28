@@ -2,12 +2,11 @@ package br.com.agape.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_cargo_discipulo")
+@Table(name = "tb_cargo")
 public class Cargo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,13 +19,13 @@ public class Cargo implements Serializable {
     @Column(name = "str_descricao_cargo")
     private String cargo;
 
-    @OneToMany(mappedBy = "cargos")
-    List<Discipulo> discipulos;
+    @OneToMany(mappedBy = "cargo")
+    Set<CargoDiscipulo> discipulos;
 
     public Cargo() {
     }
 
-    public Cargo(String cargo, List<Discipulo> discipulos) {
+    public Cargo(String cargo, Set<CargoDiscipulo> discipulos) {
         this.cargo = cargo;
         this.discipulos = discipulos;
     }
@@ -60,11 +59,11 @@ public class Cargo implements Serializable {
         this.cargo = cargo;
     }
 
-    public List<Discipulo> getDiscipulos() {
+    public Set<CargoDiscipulo> getDiscipulos() {
         return discipulos;
     }
 
-    public void setDiscipulos(List<Discipulo> discipulos) {
+    public void setDiscipulos(Set<CargoDiscipulo> discipulos) {
         this.discipulos = discipulos;
     }
 }

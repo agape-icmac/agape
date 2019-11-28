@@ -20,7 +20,7 @@
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Table: tb_cargo_discipulo
 
-INSERT INTO tb_cargo_discipulo(
+INSERT INTO tb_cargo(
              str_descricao_cargo)
 
     VALUES ('Pastoral'),
