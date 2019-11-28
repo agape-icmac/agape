@@ -5,6 +5,7 @@ import br.com.agape.repository.DiscipuloRepository;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("discipulo")
+@RequestMapping(value = "discipulo")
 public class DiscipuloResource {
 
     @Autowired

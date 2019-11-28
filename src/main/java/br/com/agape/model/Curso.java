@@ -1,5 +1,8 @@
 package br.com.agape.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -16,6 +19,7 @@ public class Curso implements Serializable {
     @Column(name = "cod_curso")
     private Long id;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "cursos")
     private List<Discipulo> discipulos;
 

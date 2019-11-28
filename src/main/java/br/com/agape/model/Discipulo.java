@@ -1,7 +1,5 @@
 package br.com.agape.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -37,26 +35,18 @@ public class Discipulo implements Serializable {
     @JoinColumn(name = "cod_nacionalidade")
     private Nacionalidade nacionalidade;
 
-    @JsonProperty("collection")
-    @OneToMany(mappedBy = "discipulo")
-    Set<CargoDiscipulo> cargos;
-
-    @JsonProperty("collection")
     @ManyToMany
     @JoinTable(name = "tb_curso_discipulo",
             joinColumns = @JoinColumn(name = "cod_discipulo"),
             inverseJoinColumns = @JoinColumn(name = "cod_curso"))
-    @OrderColumn(name = "cod_curso_discipulo")
     private List<Curso> cursos;
 
-    @JsonProperty("collection")
-    @ManyToMany
-    @JoinTable(name = "tb_discipulo_ministerio",
-            joinColumns = @JoinColumn(name = "cod_discipulo"),
-            inverseJoinColumns = @JoinColumn(name = "cod_ministerio"))
-    private List<Ministerio> ministerios;
+    @OneToMany(mappedBy = "discipulo")
+    private Set<CargoDiscipulo> cargos;
 
-    @JsonProperty("collection")
+    @OneToMany(mappedBy = "discipulo")
+    private Set<DiscipuloMinisterio> ministerios;
+
     @ManyToMany(mappedBy = "discipulos")
     private List<Evento> eventos;
 
@@ -108,7 +98,7 @@ public class Discipulo implements Serializable {
     public Discipulo() {
     }
 
-    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo batismo, Nacionalidade nacionalidade, Set<CargoDiscipulo> cargos, List<Curso> cursos, List<Ministerio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
+    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo batismo, Nacionalidade nacionalidade, Set<CargoDiscipulo> cargos, List<Curso> cursos, Set<DiscipuloMinisterio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
         this.escolaridade = escolaridade;
         this.estadoCivil = estadoCivil;
         this.batismo = batismo;
@@ -331,12 +321,11 @@ public class Discipulo implements Serializable {
         this.dataAtualizacao = dataAtualizacao;
     }
 
-    public List<Ministerio> getMinisterios() {
+    public Set<DiscipuloMinisterio> getMinisterios() {
         return ministerios;
     }
 
-    public void setMinisterios(List<Ministerio> ministerios) {
+    public void setMinisterios(Set<DiscipuloMinisterio> ministerios) {
         this.ministerios = ministerios;
     }
-
 }

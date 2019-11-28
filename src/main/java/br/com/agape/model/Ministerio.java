@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_ministerio")
@@ -22,11 +23,8 @@ public class Ministerio implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "cod_ministerio"))
     private List<Evento> eventos;
 
-    @ManyToMany
-    @JoinTable(name = "tb_discipulo_ministerio",
-            joinColumns = @JoinColumn(name = "cod_discipulo"),
-            inverseJoinColumns = @JoinColumn(name = "cod_ministerio"))
-    private List<Discipulo> discipulos;
+    @OneToMany(mappedBy = "ministerio")
+    private Set<DiscipuloMinisterio> discipulos;
 
     @Column(name = "str_descricao_mins", length = 200)
     private String descMinisterio;
@@ -34,7 +32,7 @@ public class Ministerio implements Serializable {
     public Ministerio() {
     }
 
-    public Ministerio(List<Evento> eventos, List<Discipulo> discipulos, String descMinisterio) {
+    public Ministerio(List<Evento> eventos, Set<DiscipuloMinisterio> discipulos, String descMinisterio) {
         this.eventos = eventos;
         this.discipulos = discipulos;
         this.descMinisterio = descMinisterio;
@@ -69,11 +67,11 @@ public class Ministerio implements Serializable {
         this.eventos = eventos;
     }
 
-    public List<Discipulo> getDiscipulos() {
+    public Set<DiscipuloMinisterio> getDiscipulos() {
         return discipulos;
     }
 
-    public void setDiscipulos(List<Discipulo> discipulos) {
+    public void setDiscipulos(Set<DiscipuloMinisterio> discipulos) {
         this.discipulos = discipulos;
     }
 

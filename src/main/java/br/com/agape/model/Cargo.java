@@ -16,18 +16,19 @@ public class Cargo implements Serializable {
     @Column(name = "cod_cargo")
     private Long id;
 
-    @Column(name = "str_descricao_cargo")
-    private String cargo;
 
     @OneToMany(mappedBy = "cargo")
-    Set<CargoDiscipulo> discipulos;
+    private Set<CargoDiscipulo> discipulos;
+
+    @Column(name = "str_descricao_cargo")
+    private String cargo;
 
     public Cargo() {
     }
 
-    public Cargo(String cargo, Set<CargoDiscipulo> discipulos) {
-        this.cargo = cargo;
+    public Cargo(Set<CargoDiscipulo> discipulos, String cargo) {
         this.discipulos = discipulos;
+        this.cargo = cargo;
     }
 
     @Override
@@ -51,6 +52,14 @@ public class Cargo implements Serializable {
         this.id = id;
     }
 
+    public Set<CargoDiscipulo> getDiscipulos() {
+        return discipulos;
+    }
+
+    public void setDiscipulos(Set<CargoDiscipulo> discipulos) {
+        this.discipulos = discipulos;
+    }
+
     public String getCargo() {
         return cargo;
     }
@@ -59,11 +68,4 @@ public class Cargo implements Serializable {
         this.cargo = cargo;
     }
 
-    public Set<CargoDiscipulo> getDiscipulos() {
-        return discipulos;
-    }
-
-    public void setDiscipulos(Set<CargoDiscipulo> discipulos) {
-        this.discipulos = discipulos;
-    }
 }
