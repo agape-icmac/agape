@@ -41,11 +41,17 @@ public class Discipulo implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "cod_curso"))
     private List<Curso> cursos;
 
-    @OneToMany(mappedBy = "discipulo")
-    private Set<CargoDiscipulo> cargos;
+    @ManyToMany
+    @JoinTable(name = "tb_cargo_discipulo",
+            joinColumns = @JoinColumn(name = "cod_discipulo"),
+            inverseJoinColumns = @JoinColumn(name = "cod_cargo"))
+    private Set<Cargo> cargos;
 
-    @OneToMany(mappedBy = "discipulo")
-    private Set<DiscipuloMinisterio> ministerios;
+    @ManyToMany
+    @JoinTable(name = "tb_discipulo_ministerio",
+            joinColumns = @JoinColumn(name = "cod_discipulo"),
+            inverseJoinColumns = @JoinColumn(name = "cod_curso"))
+    private Set<Ministerio> ministerios;
 
     @ManyToMany(mappedBy = "discipulos")
     private List<Evento> eventos;
@@ -81,10 +87,10 @@ public class Discipulo implements Serializable {
     private Date dataNascimento;
 
     @Column(name = "num_cpf_disc", length = 14)
-    private Long cpf;
+    private String cpf;
 
     @Column(name = "num_rg_disc", length = 25)
-    private Long rg;
+    private String rg;
 
     @Column(name = "flg_situacao_disc", length = 1)
     private char situacao;
@@ -98,13 +104,13 @@ public class Discipulo implements Serializable {
     public Discipulo() {
     }
 
-    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo batismo, Nacionalidade nacionalidade, Set<CargoDiscipulo> cargos, List<Curso> cursos, Set<DiscipuloMinisterio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, Long cpf, Long rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
+    public Discipulo(Escolaridade escolaridade, EstadoCivil estadoCivil, Batismo batismo, Nacionalidade nacionalidade, List<Curso> cursos, Set<Cargo> cargos, Set<Ministerio> ministerios, List<Evento> eventos, String nome, String nomePai, String nomeMae, String nomeConjuge, String ufNascimento, String naturalidade, char sexo, String profissao, String observacao, Date dataNascimento, String cpf, String rg, char situacao, Long usuarioAtualizacao, Timestamp dataAtualizacao) {
         this.escolaridade = escolaridade;
         this.estadoCivil = estadoCivil;
         this.batismo = batismo;
         this.nacionalidade = nacionalidade;
-        this.cargos = cargos;
         this.cursos = cursos;
+        this.cargos = cargos;
         this.ministerios = ministerios;
         this.eventos = eventos;
         this.nome = nome;
@@ -175,14 +181,6 @@ public class Discipulo implements Serializable {
 
     public void setNacionalidade(Nacionalidade nacionalidade) {
         this.nacionalidade = nacionalidade;
-    }
-
-    public Set<CargoDiscipulo> getCargos() {
-        return cargos;
-    }
-
-    public void setCargos(Set<CargoDiscipulo> cargos) {
-        this.cargos = cargos;
     }
 
     public List<Curso> getCursos() {
@@ -281,19 +279,19 @@ public class Discipulo implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public Long getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(Long rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
@@ -321,11 +319,19 @@ public class Discipulo implements Serializable {
         this.dataAtualizacao = dataAtualizacao;
     }
 
-    public Set<DiscipuloMinisterio> getMinisterios() {
+    public Set<Cargo> getCargos() {
+        return cargos;
+    }
+
+    public void setCargos(Set<Cargo> cargos) {
+        this.cargos = cargos;
+    }
+
+    public Set<Ministerio> getMinisterios() {
         return ministerios;
     }
 
-    public void setMinisterios(Set<DiscipuloMinisterio> ministerios) {
+    public void setMinisterios(Set<Ministerio> ministerios) {
         this.ministerios = ministerios;
     }
 }

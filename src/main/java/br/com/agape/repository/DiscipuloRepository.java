@@ -9,6 +9,4 @@ import org.springframework.stereotype.Repository;
 public interface DiscipuloRepository extends JpaRepository<Discipulo, Long> {
 
     Discipulo findByCpf(String cpf);
-
-
 }

@@ -1,5 +1,7 @@
 package br.com.agape.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,9 +18,9 @@ public class Cargo implements Serializable {
     @Column(name = "cod_cargo")
     private Long id;
 
-
-    @OneToMany(mappedBy = "cargo")
-    private Set<CargoDiscipulo> discipulos;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "cargos")
+    private Set<Discipulo> discipulos;
 
     @Column(name = "str_descricao_cargo")
     private String cargo;
@@ -26,7 +28,7 @@ public class Cargo implements Serializable {
     public Cargo() {
     }
 
-    public Cargo(Set<CargoDiscipulo> discipulos, String cargo) {
+    public Cargo(Set<Discipulo> discipulos, String cargo) {
         this.discipulos = discipulos;
         this.cargo = cargo;
     }
@@ -52,11 +54,11 @@ public class Cargo implements Serializable {
         this.id = id;
     }
 
-    public Set<CargoDiscipulo> getDiscipulos() {
+    public Set<Discipulo> getDiscipulos() {
         return discipulos;
     }
 
-    public void setDiscipulos(Set<CargoDiscipulo> discipulos) {
+    public void setDiscipulos(Set<Discipulo> discipulos) {
         this.discipulos = discipulos;
     }
 

@@ -1,5 +1,7 @@
 package br.com.agape.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,8 +25,9 @@ public class Ministerio implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "cod_ministerio"))
     private List<Evento> eventos;
 
-    @OneToMany(mappedBy = "ministerio")
-    private Set<DiscipuloMinisterio> discipulos;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "ministerios")
+    private Set<Discipulo> discipulos;
 
     @Column(name = "str_descricao_mins", length = 200)
     private String descMinisterio;
@@ -32,7 +35,7 @@ public class Ministerio implements Serializable {
     public Ministerio() {
     }
 
-    public Ministerio(List<Evento> eventos, Set<DiscipuloMinisterio> discipulos, String descMinisterio) {
+    public Ministerio(List<Evento> eventos, Set<Discipulo> discipulos, String descMinisterio) {
         this.eventos = eventos;
         this.discipulos = discipulos;
         this.descMinisterio = descMinisterio;
@@ -67,11 +70,11 @@ public class Ministerio implements Serializable {
         this.eventos = eventos;
     }
 
-    public Set<DiscipuloMinisterio> getDiscipulos() {
+    public Set<Discipulo> getDiscipulos() {
         return discipulos;
     }
 
-    public void setDiscipulos(Set<DiscipuloMinisterio> discipulos) {
+    public void setDiscipulos(Set<Discipulo> discipulos) {
         this.discipulos = discipulos;
     }
 
