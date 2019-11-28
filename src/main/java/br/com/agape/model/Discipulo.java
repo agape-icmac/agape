@@ -1,5 +1,7 @@
 package br.com.agape.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -35,10 +37,11 @@ public class Discipulo implements Serializable {
     @JoinColumn(name = "cod_nacionalidade")
     private Nacionalidade nacionalidade;
 
-
+    @JsonProperty("collection")
     @OneToMany(mappedBy = "discipulo")
     Set<CargoDiscipulo> cargos;
 
+    @JsonProperty("collection")
     @ManyToMany
     @JoinTable(name = "tb_curso_discipulo",
             joinColumns = @JoinColumn(name = "cod_discipulo"),
@@ -46,13 +49,14 @@ public class Discipulo implements Serializable {
     @OrderColumn(name = "cod_curso_discipulo")
     private List<Curso> cursos;
 
-
+    @JsonProperty("collection")
     @ManyToMany
     @JoinTable(name = "tb_discipulo_ministerio",
             joinColumns = @JoinColumn(name = "cod_discipulo"),
             inverseJoinColumns = @JoinColumn(name = "cod_ministerio"))
     private List<Ministerio> ministerios;
 
+    @JsonProperty("collection")
     @ManyToMany(mappedBy = "discipulos")
     private List<Evento> eventos;
 
